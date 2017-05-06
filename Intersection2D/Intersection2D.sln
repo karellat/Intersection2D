@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intersection2D", "Intersection2D\Intersection2D.csproj", "{87EA809A-44CE-445B-A431-CAF2A4556308}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{8062923C-A46B-42D4-BD8D-79593A541830}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87EA809A-44CE-445B-A431-CAF2A4556308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87EA809A-44CE-445B-A431-CAF2A4556308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87EA809A-44CE-445B-A431-CAF2A4556308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87EA809A-44CE-445B-A431-CAF2A4556308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8062923C-A46B-42D4-BD8D-79593A541830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8062923C-A46B-42D4-BD8D-79593A541830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8062923C-A46B-42D4-BD8D-79593A541830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8062923C-A46B-42D4-BD8D-79593A541830}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
