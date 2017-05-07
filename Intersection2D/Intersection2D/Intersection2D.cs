@@ -153,7 +153,7 @@ namespace Intersection2D
             Vector2 i = LineLineIntersection(p1, p2, b1, b2);
             //If not in the segment 
             if (float.IsNaN(i.X))
-                return new[] {i};
+                return new Vector2[0];
             //If distance between line and circle is bigger than radius 
             float distanceBetweenLineCircle = Vector2.DistanceSquared(i, aMiddle);
             if (distanceBetweenLineCircle > (aRadius * aRadius))
@@ -189,7 +189,7 @@ namespace Intersection2D
           
 
         }
-     
+
     }
     public static class MyExtensions
     {
