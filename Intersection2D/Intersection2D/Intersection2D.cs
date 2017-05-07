@@ -40,22 +40,21 @@ namespace Intersection2D
             //Transform points to equation form 
             //line a 
             float A1 = a1.Y - a2.Y;
-            float B1 = a1.X - a2.X;
-            float C1 = A1 * a1.X + B1 * a1.Y;
-            C1 *= -1.0f; 
+            float B1 = a2.X - a1.X;
+            float C1 = A1 * a2.X + B1 * a2.Y;
 
             //line b
             float A2 = b1.Y - b2.Y;
-            float B2 = b1.X - b2.X;
-            float C2 = A2 * b1.X + B2 * b1.Y;
-            C2 *= -1.0f;
+            float B2 = b2.X - b1.X;
+            float C2 = A2 * b2.X + B2 * b2.Y;
+
             //assuming Ax + By = C form 
             float delta = A1 * B2 - A2 * B1;
             //Check parallelity of lines 
             if (delta == 0)
             {
                 //Check equality of lines 
-                if (A2 * b1.X + B2 * b1.Y == C2)
+                if (A2 * b1.X + B2 * b1.Y == -C2)
                     return new Vector2(float.PositiveInfinity, float.PositiveInfinity);
 
                 return new Vector2(float.NaN, float.NaN);
@@ -76,8 +75,8 @@ namespace Intersection2D
         public static Vector2 LinesegmentLinesegmentIntersection(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
         {
             //If not line throw exception
-            Debug.Assert(a1 - a2 == Vector2.Zero);
-            Debug.Assert(b1 - b2 == Vector2.Zero);
+            //Debug.Assert(a1 - a2 == Vector2.Zero);
+            //Debug.Assert(b1 - b2 == Vector2.Zero);
             //Find line & line intersection 
             Vector2 i = LineLineIntersection(a1, a2, b1, b2);
             //No intersection 
@@ -88,7 +87,7 @@ namespace Intersection2D
             {
                 //Check line a contains intersection 
                 //if  perpendicular with axis 
-                if (a1.X == a2.X)
+                if (a1.X != a2.X)
                 {
                     if (!MyExtensions.Between(a1.X, a2.X, i.X))
                         return new Vector2(float.NaN, float.NaN);
@@ -100,7 +99,7 @@ namespace Intersection2D
                 }
 
                 //Check line b contains intersection 
-                if (b1.X == b2.X)
+                if (b1.X != b2.X)
                 {
                     if (!MyExtensions.Between(b1.X, b2.X, i.X))
                         return new Vector2(float.NaN, float.NaN);
@@ -143,25 +142,25 @@ namespace Intersection2D
         /// <returns></returns>
        public  static Vector2[] CircleLineSegmentIntersection(Vector2 aMiddle, float aRadius, Vector2 b1, Vector2 b2)
         {
-            Debug.Assert(b1 == b2);
+            //Debug.Assert(b1 == b2);
             //check if any intersection exists, find intersection with perpedicular line
             Vector2 p1 = aMiddle;
             Vector2 directionB = b1 - b2;
             //Create perpedicular vector to b
             Vector2 perpedicularB = new Vector2(directionB.Y, (-1.0f * directionB.X));
             Vector2 p2 = aMiddle + perpedicularB;
-            //Intersection with perpedicular line
-            Vector2 i = LinesegmentLinesegmentIntersection(p1, p2, b1, b2);
+            //Intersection with perpedicular line, no point to 
+            Vector2 i = LineLineIntersection(p1, p2, b1, b2);
             //If not in the segment 
             if (float.IsNaN(i.X))
                 return new[] {i};
             //If distance between line and circle is bigger than radius 
             float distanceBetweenLineCircle = Vector2.DistanceSquared(i, aMiddle);
             if (distanceBetweenLineCircle > (aRadius * aRadius))
-                return new [] {new Vector2(float.NaN, float.NaN)};
+                return new Vector2[0];
             //if line is tangent
             else if (distanceBetweenLineCircle == (aRadius * aRadius))
-                return new Vector2[0];
+                return new[] {i};
 
             //IF THERE is two intersection 
             //Using perpedicular line & pythagoren theorem 
@@ -217,7 +216,7 @@ namespace Intersection2D
                 lower = a;
             }
 
-            if (x > lower && x < upper)
+            if (x >= lower && x <= upper)
                 return true;
             return false;
         }
