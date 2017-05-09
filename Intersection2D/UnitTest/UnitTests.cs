@@ -305,6 +305,17 @@ namespace UnitTest
         }
 
         [TestMethod]
+        public void NoIntersection2()
+        {
+            Vector2 aMiddle = new Vector2(3,2);
+            float aRadius = 1;
+            Vector2 a = new Vector2(3,0.999f);
+            Vector2 b = new Vector2(3.0f,0.5f);
+            Vector2[] i = Intersections.CircleLineSegmentIntersection(aMiddle, aRadius, a, b);
+            Assert.IsTrue(i.Length == 0);
+        }
+
+        [TestMethod]
         public void Intersection3Test()
         {
             Vector2 aMiddle = new Vector2(5,1);

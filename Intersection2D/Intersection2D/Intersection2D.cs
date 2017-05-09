@@ -171,23 +171,41 @@ namespace Intersection2D
             //Intersection points 
             Vector2 X_1 = (directionB * distanceToV) + i;
             Vector2 X_2 = (directionB * distanceToV * -1) + i;
-            
-            if (MyExtensions.Between(b1.X, b2.X, X_1.X))
+
+            if (b1.X != b2.X)
             {
-                if (MyExtensions.Between(b1.X, b2.X, X_2.X))
-                    return new[] {X_1, X_2};
+                if (MyExtensions.Between(b1.X, b2.X, X_1.X))
+                {
+                    if (MyExtensions.Between(b1.X, b2.X, X_2.X))
+                        return new[] {X_1, X_2};
+                    else
+                        return new[] {X_1};
+                }
                 else
-                    return new[] {X_1};
+                {
+                    if (MyExtensions.Between(b1.X, b2.X, X_2.X))
+                        return new[] {X_2};
+                    else
+                        return new Vector2[0];
+                }
             }
             else
             {
-                if (MyExtensions.Between(b1.X, b2.X, X_2.X))
-                    return new[] {X_2};
+                if (MyExtensions.Between(b1.Y, b2.Y, X_1.Y))
+                {
+                    if (MyExtensions.Between(b1.X, b2.X, X_2.X))
+                        return new[] {X_1, X_2};
+                    else
+                        return new[] {X_1};
+                }
                 else
-                    return new Vector2[0]; 
+                {
+                    if (MyExtensions.Between(b1.Y, b2.Y, X_2.Y))
+                        return new[] {X_2};
+                    else
+                        return new Vector2[0];
+                }
             }
-          
-
         }
 
     }
